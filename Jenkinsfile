@@ -6,22 +6,15 @@ pipeline {
     }
 
     stages {
-
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build with Maven') {
+        stage('Build') {
             steps {
-                sh './mvnw clean package -DskipTests -Dcheckstyle.skip=true'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t spring-petclinic:1.0 .'
+                sh './mvnw clean package -DskipTests'
             }
         }
     }
