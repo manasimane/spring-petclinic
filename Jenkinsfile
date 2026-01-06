@@ -29,6 +29,19 @@ pipeline {
         }
     }
 }
+        stage('Deploy Application') {
+    steps {
+        script {
+            sh '''
+              docker stop petclinic || true
+              docker rm petclinic || true
+              docker pull <dockerhub-username>/spring-petclinic:ci
+              docker run -d --name petclinic -p 8080:8080 <dockerhub-username>/spring-petclinic:ci
+            '''
+        }
+    }
+}
+
 
     }
 }
