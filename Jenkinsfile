@@ -22,7 +22,7 @@ pipeline {
     steps {
         script {
             docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
-                def app = docker.build("YOUR_DOCKERHUB_USERNAME/spring-petclinic:${BUILD_NUMBER}")
+                def app = docker.build("manasi880/spring-petclinic:${BUILD_NUMBER}")
                 app.push()
                 app.push("latest")
             }
