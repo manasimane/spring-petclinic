@@ -18,10 +18,17 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t spring-petclinic:ci .'
+        stage('Build & Push Docker Image') {
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                def app = docker.build("YOUR_DOCKERHUB_USERNAME/spring-petclinic:${BUILD_NUMBER}")
+                app.push()
+                app.push("latest")
             }
         }
+    }
+}
+
     }
 }
