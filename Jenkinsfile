@@ -12,9 +12,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build App') {
             steps {
                 sh './mvnw clean package -DskipTests'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t spring-petclinic:ci .'
             }
         }
     }
