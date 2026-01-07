@@ -36,7 +36,7 @@ pipeline {
               docker stop spring-petclinic || true
               docker rm spring-petclinic || true
               docker pull manasi880/spring-petclinic:latest
-              docker run -d --name spring-petclinic -p 8080:8080 manasi880/spring-petclinic:latest
+              docker run -d --name spring-petclinic -p 8081:8080 manasi880/spring-petclinic:latest
             '''
         }
     }
