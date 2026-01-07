@@ -33,10 +33,10 @@ pipeline {
     steps {
         script {
             sh '''
-              docker stop petclinic || true
-              docker rm petclinic || true
-              docker pull manasi880/spring-petclinic:ci
-              docker run -d --name petclinic -p 8080:8080 manasi880/spring-petclinic:ci
+              docker stop spring-petclinic || true
+              docker rm spring-petclinic || true
+              docker pull manasi880/spring-petclinic:latest
+              docker run -d --name spring-petclinic -p 8080:8080 manasi880/spring-petclinic:latest
             '''
         }
     }
